@@ -1,20 +1,22 @@
 @extends('layout')
-@section('title', 'Portfolio')
+@section('title', 'Portafolio |' . $projet->title)
 
 @section('content')
 
-<h1>Portfolio</h1>
+
+<h1>{{$projet->title}}</h1>
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus distinctio ex eveniet tempore cumque vero quo deserunt neque ad consectetur numquam facere, quis vel voluptate aliquid perferendis non, amet exercitationem?</p>
 
 
 <ul>
 
-    @forelse($portfolio as $portfolioItem)
-    <li>{{ $portfolioItem['title'] }}</li>
-    @empty
-    <li>No hay Portfolios</li>
-    @endforelse
-
+    <br>
+    <small>{{$projet->description}}</small>
+    <br>
+    {{$projet->created_at->diffForHumans()}}
+    </li>
+   
+ 
 </ul>
 
 @endsection

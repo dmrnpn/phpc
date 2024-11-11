@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\MessagesController;
+use App\Http\Controllers\PortfolioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,12 +43,17 @@ use Illuminate\Support\Facades\Route;
 // })->name('home');
 
 // 2 segunda forma ideal si no usaremos tanta logica en nuestras paginas
+Route::view('/','home')->name('home');
+Route::view('/quienes-somos','about')->name('about');
+Route::view('/contact','contact')->name('contact');
 
 
+Route::get('/portafolio',[\App\Http\Controllers\ProjectController::class, 'index'])->name('projects.index');
 
-// Route::view('/','home')->name('home');
-// Route::view('/about','about')->name('about');
-// Route::view('/contact','contact')->name('contact');
-// Route::get('/portfolio',[\App\Http\Controllers\PortfolioController::class, 'index'])->name('portfolio');
+Route::get('/portafolio/{id}',[\App\Http\Controllers\ProjectController::class, 'show'])->name('projects.show');
+// usando php artisan make:controller name --api, --resource 
+// Route::resource('projects', PortfolioController::class)->only(['index', 'show']);
 
-Route::resource('projects','PortfolioController');
+//ruta para formulario con el metodo post
+
+Route::post('contact',[MessagesController::class,'store']);
